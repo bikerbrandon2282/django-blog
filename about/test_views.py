@@ -1,14 +1,14 @@
 from django.test import TestCase
 from django.urls import reverse
-from .models import About
-from .forms import CollaborateForm
+from .models import Aboutme
+from .forms import CollaborateRequestForm
 
 
 class TestAboutView(TestCase):
 
     def setUp(self):
         """Creates about me content"""
-        self.about_content = About(
+        self.about_content = Aboutme(
             title="About Me", content="This is about me.")
         self.about_content.save()
 
@@ -18,4 +18,4 @@ class TestAboutView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'About Me', response.content)
         self.assertIsInstance(
-            response.context['collaborate_form'], CollaborateForm)
+            response.context['collaborate_form'], CollaborateRequestForm)
